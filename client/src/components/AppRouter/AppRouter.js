@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../../pages/NotFoundPage';
 import { authRoutes, publicRoutes } from '../../routes';
+import {Context} from './../../context/Context';
 
 const AppRouter = () => {
-    const isAuth = false;
+    const {user} = useContext(Context);
+    console.log('user: ', user);
     return (
+       
         <Routes>
-            { isAuth && authRoutes.map(({path, Component}) => {
+            { user.isAuth && authRoutes.map(({path, Component}) => {
                 return <Route key = {path} path={path} element={Component} />
             })
             }
