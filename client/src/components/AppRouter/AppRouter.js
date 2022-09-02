@@ -1,26 +1,25 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import NotFoundPage from '../../pages/NotFoundPage';
 import { authRoutes, publicRoutes } from '../../routes';
-import {Context} from './../../context/Context';
 
-const AppRouter = () => {
-    const {user} = useContext(Context);
-    console.log('user: ', user);
-    return (
-       
-        <Routes>
-            { user.isAuth && authRoutes.map(({path, Component}) => {
-                return <Route key = {path} path={path} element={Component} />
-            })
-            }
-            { publicRoutes.map(({path, Component}) => {
-                return <Route key = {path} path={path} element={Component} />
-            })
-            }
-            <Route path='*' element={<NotFoundPage/>} />
-        </Routes>
-    );
-};
+function AppRouter() {
+  const { user } = useContext(Context);
+  console.log('user: ', user);
+  return (
+
+    <Routes>
+      { user.isAuth && authRoutes.map(({ path, Component }) => (
+        <Route key={path} path={path} element={Component} />
+      ))}
+
+      { publicRoutes.map(({ path, Component }) => (
+        <Route key={path} path={path} element={Component} />
+      ))}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
+}
 
 export default AppRouter;
