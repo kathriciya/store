@@ -6,7 +6,6 @@ import { authRoutes, publicRoutes } from '../../routes';
 
 function AppRouter() {
   const { user } = useContext(Context);
-  console.log('user: ', user);
   return (
 
     <Routes>
